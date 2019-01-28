@@ -1,10 +1,10 @@
 module UnifiApi
   module UnifiStat
-    def statSites
+    def stat_sites
       @session.get("#{@controller_url}/api/stat/sites")      
     end
 
-    def statAdmin
+    def stat_admin
       @session.get("#{@controller_url}/api/stat/admin")
     end
   end
