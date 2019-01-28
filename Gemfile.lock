@@ -1,0 +1,30 @@
+PATH
+  remote: .
+  specs:
+    unifi_api (0.1.0)
+      httpclient
+      require_all
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    coderay (1.1.2)
+    httpclient (2.8.3)
+    method_source (0.9.2)
+    pry (0.12.2)
+      coderay (~> 1.1.0)
+      method_source (~> 0.9.0)
+    rake (10.5.0)
+    require_all (2.0.0)
+
+PLATFORMS
+  x64-mingw32
+
+DEPENDENCIES
+  bundler (~> 1.17)
+  pry
+  rake (~> 10.0)
+  unifi_api!
+
+BUNDLED WITH
+   1.17.2
