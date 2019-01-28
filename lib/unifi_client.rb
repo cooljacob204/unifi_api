@@ -3,7 +3,9 @@ module UnifiApi
     attr_reader :controller_user, :controller_password, :controller_url, :site_id
 
     include UnifiStat
-    include UnifiSites
+    include UnifiSelf
+    
+    include S::CMD::STAMGR
     def initialize(controller_user, controller_password, controller_url, site_id=nil)
       @session = JSONClient.new(default_header: {"User-Agent" => "unifi_api"})
 
