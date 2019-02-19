@@ -23,5 +23,9 @@ module UnifiApi
       
       @session.post("#{@controller_url}/api/login", login_data)
     end
+
+    def logout
+       @session.post("#{@controller_url}/api/logout")
+    end
   end
 end
