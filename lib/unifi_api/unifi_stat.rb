@@ -1,5 +1,5 @@
 module UnifiApi
-  module UnifiStat
+  module Stat
     def stat_sites
       @session.get("#{@controller_url}/api/stat/sites")      
     end

@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
 
-require "bundler/setup"
-require "./config/environment"
-require "pry"
+require 'bundler/setup'
+require 'pry'
+require_relative '../lib/unifi_api.rb'
 
 # You can add fixtures and/or initialization code here to make experimenting
 # with your gem easier. You can also use a different console, if you like.
@@ -10,5 +10,5 @@ require "pry"
 # (If you use this, don't forget to add pry to your Gemfile!)
 # Pry.start
 
-require "irb"
-IRB.start(__FILE__)
+require 'irb'
+binding.pry

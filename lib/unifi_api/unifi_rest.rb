@@ -1,4 +1,4 @@
 module UnifiApi
-  class UnifiRest
+  class Rest
   end
 end

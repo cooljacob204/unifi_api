@@ -1,5 +1,5 @@
 module UnifiApi
-  module UnifiSelf
+  module Self
     def self_sites
       @session.get("#{@controller_url}/api/self/sites")
     end

@@ -1,9 +1,9 @@
 module UnifiApi
-  class UnifiClient
+  class Client
     attr_reader :controller_user, :controller_password, :controller_url, :site_id
 
-    include UnifiStat
-    include UnifiSelf
+    include Stat
+    include Self
     
     include S::CMD::STAMGR
     def initialize(controller_user, controller_password, controller_url, site_id=nil)

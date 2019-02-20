@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    unifi_api (0.1.0)
+    unifi_api (0.1.20)
       httpclient
       require_all
 
@@ -27,4 +27,4 @@ DEPENDENCIES
   unifi_api!
 
 BUNDLED WITH
-   1.17.2
+   1.17.3
