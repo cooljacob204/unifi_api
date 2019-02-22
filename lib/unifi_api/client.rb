@@ -1,6 +1,7 @@
 module UnifiApi
   class Client
-    attr_reader :controller_user, :controller_password, :controller_url, :site_id
+    attr_reader :controller_user, :controller_password, :controller_url
+    attr_accessor :site_id
 
     include Stat
     include Self
