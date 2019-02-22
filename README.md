@@ -22,19 +22,31 @@ Or install it yourself as:
 
 ```ruby
 url = 'https://myunificontroller.com'
-username = 'cooljacob204'
+username = 'username'
 password = 'password'
 site_id = 'siteid8c'
-mac_address = '00:00:00:00:00'
+mac_address = '00:00:00:00:00:00'
 
 unifi = UnifiApi::Client.new(username, password, url)
+# => #<UnifiApi::Client:0x0000000000000000>
 
 unifi.login
+# => true
 
-unifi.site_id = site_id
+unifi.list_sites
+# => {"site1"=>"site1_id", "site2"=>"site2_id", "site3"=>"site3_id"}
+
+unifi.site_ids
+# => ['site1_id', 'site2_id', 'site3_id']
+
+unifi.site_exists?('site1_id')
+# => true
+
+unifi.set_site(site_id)
+# => true
 
 unifi.authorize_guest(mac_address)
-
+# => true
 ```
 
 ## Notes

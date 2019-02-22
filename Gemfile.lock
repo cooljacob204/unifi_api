@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    unifi_api (0.1.21)
+    unifi_api (0.1.23)
       httpclient
       require_all
 
@@ -18,13 +18,14 @@ GEM
     require_all (2.0.0)
 
 PLATFORMS
+  ruby
   x64-mingw32
 
 DEPENDENCIES
-  bundler (~> 1.17)
+  bundler
   pry
   rake (~> 10.0)
   unifi_api!
 
 BUNDLED WITH
-   1.17.3
+   2.0.1
