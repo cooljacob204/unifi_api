@@ -30,12 +30,11 @@ mac_address = '00:00:00:00:00'
 unifi = UnifiApi::Client.new(username, password, url)
 
 unifi.login
->true
 
 unifi.site_id = site_id
 
 unifi.authorize_guest(mac_address)
->true
+
 ```
 
 ## Notes
