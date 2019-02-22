@@ -1,8 +1,6 @@
 # UnifiApi
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/unifi_api`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+A gem for interacting with a unifi controller.
 
 ## Installation
 
@@ -22,7 +20,27 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+url = 'https://myunificontroller.com'
+username = 'cooljacob204'
+password = 'password'
+site_id = 'siteid8c'
+mac_address = '00:00:00:00:00'
+
+unifi = UnifiApi::Client.new(username, password, url)
+
+unifi.login
+>true
+
+unifi.site_id = site_id
+
+unifi.authorize_guest(mac_address)
+>true
+```
+
+## Notes
+
+This gem assumes you have a valid certificate for your controller. It is on the 'roadmap' to allow for invalid certificates.
 
 ## Development
 
