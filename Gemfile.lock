@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    unifi_api (0.1.22)
+    unifi_api (0.1.23)
       httpclient
       require_all
 

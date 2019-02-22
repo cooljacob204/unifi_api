@@ -5,7 +5,8 @@ module UnifiApi
     module CMD
       module STAMGR
         def authorize_guest(mac, minutes=60, up=nil, down=nil, mbytes=nil, ap_mac=nil)
-          return false if !site_id
+          return false unless site_id
+          return false unless /^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$/.match?(mac)
 
           body = {
             'cmd' => 'authorize-guest',
@@ -24,7 +25,7 @@ module UnifiApi
         end
 
         def unauthorize_guest(mac)
-          return false if !site_id
+          return false unless site_id
 
           body = {
             'cmd' => 'unauthorize-guest',
@@ -52,7 +53,7 @@ module UnifiApi
         end
 
         def block_sta
-          return false if !site_id
+          return false unless site_id
 
           body = {
             'cmd' => 'block-sta',
@@ -65,7 +66,7 @@ module UnifiApi
         end
 
         def unblock_sta
-          return false if !site_id
+          return false unless site_id
 
           body = {
             'cmd' => 'unblock-sta',
@@ -78,7 +79,7 @@ module UnifiApi
         end
 
         def forget_sta
-          return false if !site_id
+          return false unless site_id
 
           body = {
             'cmd' => 'forget-sta',
