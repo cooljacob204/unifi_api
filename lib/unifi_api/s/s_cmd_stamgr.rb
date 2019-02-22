@@ -17,7 +17,10 @@ module UnifiApi
           body['mbytes'] = mbytes if mbytes
           body['ap_mac'] = ap_mac if ap_mac
 
-          @session.post("#{@controller_url}/api/s/#{@site_id}/cmd/stamgr", body)
+          resp = @session.post("#{@controller_url}/api/s/#{@site_id}/cmd/stamgr", body)
+
+          return false unless resp.status_code == 200
+          true
         end
 
         def unauthorize_guest(mac)
@@ -28,7 +31,10 @@ module UnifiApi
             'mac' => mac
           }
 
-          @session.post("#{@controller_url}/api/s/#{@site_id}/cmd/stamgr", body)
+          resp = @session.post("#{@controller_url}/api/s/#{@site_id}/cmd/stamgr", body)
+
+          return false unless resp.status_code == 200
+          true
         end
 
         def reconnect_sta(mac)
@@ -39,7 +45,10 @@ module UnifiApi
             'mac' => mac
           }
 
-          @session.post("#{@controller_url}/api/s/#{@site_id}/cmd/stamgr", body)
+          resp = @session.post("#{@controller_url}/api/s/#{@site_id}/cmd/stamgr", body)
+
+          return false unless resp.status_code == 200
+          true
         end
 
         def block_sta
@@ -49,7 +58,10 @@ module UnifiApi
             'cmd' => 'block-sta',
             'mac' => mac
           }
-          @session.post("#{@controller_url}/api/s/#{@site_id}/cmd/stamgr", body)
+          resp = @session.post("#{@controller_url}/api/s/#{@site_id}/cmd/stamgr", body)
+
+          return false unless resp.status_code == 200
+          true
         end
 
         def unblock_sta
@@ -59,7 +71,10 @@ module UnifiApi
             'cmd' => 'unblock-sta',
             'mac' => mac
           }
-          @session.post("#{@controller_url}/api/s/#{@site_id}/cmd/stamgr", body)
+          resp = @session.post("#{@controller_url}/api/s/#{@site_id}/cmd/stamgr", body)
+
+          return false unless resp.status_code == 200
+          true
         end
 
         def forget_sta
@@ -69,7 +84,10 @@ module UnifiApi
             'cmd' => 'forget-sta',
             'mac' => mac
           }
-          @session.post("#{@controller_url}/api/s/#{@site_id}/cmd/stamgr", body)
+          resp = @session.post("#{@controller_url}/api/s/#{@site_id}/cmd/stamgr", body)
+
+          return false unless resp.status_code == 200
+          true
         end
       end
     end

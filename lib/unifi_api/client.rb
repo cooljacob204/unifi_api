@@ -22,11 +22,17 @@ module UnifiApi
         'password' => @controller_password
       }
       
-      @session.post("#{@controller_url}/api/login", login_data)
+      resp = @session.post("#{@controller_url}/api/login", login_data)
+
+      return false unless resp.status_code == 200
+      true
     end
 
     def logout
-       @session.post("#{@controller_url}/api/logout", {})
+      resp = @session.post("#{@controller_url}/api/logout", {})
+
+      return false unless resp.status_code == 200
+      true
     end
   end
 end
