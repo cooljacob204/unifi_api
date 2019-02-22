@@ -24,7 +24,7 @@ Or install it yourself as:
 url = 'https://myunificontroller.com'
 username = 'username'
 password = 'password'
-site_id = 'siteid8c'
+site_id = 'site1_id'
 mac_address = '00:00:00:00:00:00'
 
 unifi = UnifiApi::Client.new(username, password, url)
@@ -39,7 +39,7 @@ unifi.list_sites
 unifi.site_ids
 # => ['site1_id', 'site2_id', 'site3_id']
 
-unifi.site_exists?('site1_id')
+unifi.site_exists?(site_id)
 # => true
 
 unifi.set_site(site_id)
