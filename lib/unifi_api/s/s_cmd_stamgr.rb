@@ -6,7 +6,7 @@ module UnifiApi
       module STAMGR
         def authorize_guest(mac, minutes=60, up=nil, down=nil, mbytes=nil, ap_mac=nil)
           return false unless site_id
-          return false unless /^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$/.match?(mac)
+          return false unless mac_valid?(mac)
 
           body = {
             'cmd' => 'authorize-guest',
@@ -26,6 +26,7 @@ module UnifiApi
 
         def unauthorize_guest(mac)
           return false unless site_id
+          return false unless mac_valid?(mac)
 
           body = {
             'cmd' => 'unauthorize-guest',
@@ -40,6 +41,7 @@ module UnifiApi
 
         def reconnect_sta(mac)
           return false if !site_id
+          return false unless mac_valid?(mac)
 
           body = {
             'cmd' => 'kick-sta',
@@ -54,6 +56,7 @@ module UnifiApi
 
         def block_sta
           return false unless site_id
+          return false unless mac_valid?(mac)
 
           body = {
             'cmd' => 'block-sta',
@@ -67,6 +70,7 @@ module UnifiApi
 
         def unblock_sta
           return false unless site_id
+          return false unless mac_valid?(mac)
 
           body = {
             'cmd' => 'unblock-sta',
@@ -80,6 +84,7 @@ module UnifiApi
 
         def forget_sta
           return false unless site_id
+          return false unless mac_valid?(mac)
 
           body = {
             'cmd' => 'forget-sta',
@@ -89,6 +94,10 @@ module UnifiApi
 
           return false unless resp.status_code == 200
           true
+        end
+
+        def mac_valid?(mac)
+          /^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$/.match?(mac)
         end
       end
     end
