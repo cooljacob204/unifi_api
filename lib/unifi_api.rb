@@ -7,7 +7,7 @@ require 'unifi_api/stat'
 require 'unifi_api/self'
 require 'unifi_api/s/s_cmd_stamgr'
 
-require 'unifi_api/client'
+require 'unifi_api/unifi'
 
 module UnifiApi
   class Error < StandardError; end
