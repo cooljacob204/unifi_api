@@ -3,9 +3,18 @@
 module UnifiApi
   module S
     module CMD
-      module STAMGR
+      class STAMGR
+        attr_reader :id, :name
+
+        def initialize(url:, id: nil, session:, **args)
+          @url = url
+          @id = id
+          @session = session
+          @name = args[:name]
+        end
+
         def authorize_guest(mac, minutes=60, up=nil, down=nil, mbytes=nil, ap_mac=nil)
-          return false unless site_id
+          return false unless id
           return false unless mac_valid?(mac)
 
           body = {
@@ -18,14 +27,14 @@ module UnifiApi
           body['mbytes'] = mbytes if mbytes
           body['ap_mac'] = ap_mac if ap_mac
 
-          resp = @session.post("#{@controller_url}/api/s/#{@site_id}/cmd/stamgr", body)
+          resp = post_request(body)
 
           return false unless resp.status_code == 200
           true
         end
 
         def unauthorize_guest(mac)
-          return false unless site_id
+          return false unless id
           return false unless mac_valid?(mac)
 
           body = {
@@ -33,14 +42,14 @@ module UnifiApi
             'mac' => mac
           }
 
-          resp = @session.post("#{@controller_url}/api/s/#{@site_id}/cmd/stamgr", body)
+          resp = post_request(body)
 
           return false unless resp.status_code == 200
           true
         end
 
         def reconnect_sta(mac)
-          return false if !site_id
+          return false if !id
           return false unless mac_valid?(mac)
 
           body = {
@@ -48,49 +57,49 @@ module UnifiApi
             'mac' => mac
           }
 
-          resp = @session.post("#{@controller_url}/api/s/#{@site_id}/cmd/stamgr", body)
+          resp = post_request(body)
 
           return false unless resp.status_code == 200
           true
         end
 
         def block_sta
-          return false unless site_id
+          return false unless id
           return false unless mac_valid?(mac)
 
           body = {
             'cmd' => 'block-sta',
             'mac' => mac
           }
-          resp = @session.post("#{@controller_url}/api/s/#{@site_id}/cmd/stamgr", body)
+          resp = post_request(body)
 
           return false unless resp.status_code == 200
           true
         end
 
         def unblock_sta
-          return false unless site_id
+          return false unless id
           return false unless mac_valid?(mac)
 
           body = {
             'cmd' => 'unblock-sta',
             'mac' => mac
           }
-          resp = @session.post("#{@controller_url}/api/s/#{@site_id}/cmd/stamgr", body)
+          resp = post_request(body)
 
           return false unless resp.status_code == 200
           true
         end
 
         def forget_sta
-          return false unless site_id
+          return false unless id
           return false unless mac_valid?(mac)
 
           body = {
             'cmd' => 'forget-sta',
             'mac' => mac
           }
-          resp = @session.post("#{@controller_url}/api/s/#{@site_id}/cmd/stamgr", body)
+          resp = post_request(body)
 
           return false unless resp.status_code == 200
           true
@@ -99,6 +108,13 @@ module UnifiApi
         def mac_valid?(mac)
           /^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$/.match?(mac)
         end
+
+        private
+
+        def post_request(body)
+          @session.post("#{@url}/api/s/#{@id}/cmd/stamgr", body)
+        end
+
       end
     end
   end

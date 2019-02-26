@@ -27,25 +27,31 @@ password = 'password'
 site_id = 'site1_id'
 mac_address = '00:00:00:00:00:00'
 
-unifi = UnifiApi::Client.new(username, password, url)
-# => #<UnifiApi::Client:0x0000000000000000>
+unifi = UnifiApi::Unifi.new(username: username, password: password, url: url)
+# => #<UnifiApi::Unifi:0x0000000000000000>
 
 unifi.login
 # => true
 
-unifi.list_sites
+unifi.site_names_and_ids
 # => {"site1"=>"site1_id", "site2"=>"site2_id", "site3"=>"site3_id"}
+
+unifi.site_names
+# => {'site1', 'site2', 'site3'}
 
 unifi.site_ids
 # => ['site1_id', 'site2_id', 'site3_id']
 
-unifi.site_exists?(site_id)
-# => true
+unifi.sites
+# => [#<UnifiApi::S::CMD::STAMGR:0x0000000000000000> , #<UnifiApi::S::CMD::STAMGR:0x0000000000000001> , #<UnifiApi::S::CMD::STAMGR:0x0000000000000002>]
 
-unifi.set_site(site_id)
-# => true
+site = unifi.site_find_by_id(site_id)
+# => <UnifiApi::S::CMD::STAMGR:0x0000000000000000>
 
-unifi.authorize_guest(mac_address)
+site.name
+# => site1
+
+site.authorize_guest(mac_address)
 # => true
 ```
 
