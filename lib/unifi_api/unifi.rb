@@ -8,12 +8,11 @@ module UnifiApi
       @password = password
       @url = url
       @logged_in = login
-      @sites = set_sites if logged_in
-
+      @sites = set_sites if logged_in?
     end
     
     def login
-      return true if @logged_in
+      return true if logged_in?
       
       login_data = {
         'username' => @username,
