@@ -1,6 +1,6 @@
 module UnifiApi
   class Unifi
-    attr_reader :username, :url, :logged_in, :sites
+    attr_reader :username, :url, :sites
     
     def initialize(username:, password:, url:, **args)
       @session = JSONClient.new(default_header: {"User-Agent" => "unifi_api"})
@@ -34,6 +34,10 @@ module UnifiApi
 
       @logged_in = false
       true
+    end
+
+    def logged_in?
+      @logged_in
     end
 
     def site_find_by_id(site_id)
