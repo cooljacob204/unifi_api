@@ -1,5 +1,7 @@
 module UnifiApi
   class Unifi
+    include Helpers
+
     attr_reader :username, :url, :sites
     
     def initialize(username:, password:, url:, **args)

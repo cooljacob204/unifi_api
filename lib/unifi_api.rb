@@ -1,6 +1,7 @@
 require 'httpclient'
 require 'jsonclient'
 
+require 'unifi_api/helpers'
 require 'unifi_api/version'
 require 'unifi_api/rest'
 require 'unifi_api/stat'

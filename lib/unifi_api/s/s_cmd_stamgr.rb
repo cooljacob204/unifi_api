@@ -4,6 +4,8 @@ module UnifiApi
   module S
     module CMD
       class STAMGR
+        include Helpers
+        
         attr_reader :id, :name
 
         def initialize(url:, id: nil, session:, **args)
@@ -103,10 +105,6 @@ module UnifiApi
 
           return false unless resp.status_code == 200
           true
-        end
-
-        def mac_valid?(mac)
-          /^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$/.match?(mac)
         end
 
         private
