@@ -27,7 +27,7 @@ password = 'password'
 site_id = 'site1_id'
 mac_address = '00:00:00:00:00:00'
 
-unifi = UnifiApi::Unifi.new(username, password, url)
+unifi = UnifiApi::Unifi.new(username: username, password: password, url: url)
 # => #<UnifiApi::Unifi:0x0000000000000000>
 
 unifi.login
