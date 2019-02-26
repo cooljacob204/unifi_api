@@ -45,7 +45,7 @@ unifi.site_ids
 unifi.sites
 # => [#<UnifiApi::S::CMD::STAMGR:0x0000000000000000> , #<UnifiApi::S::CMD::STAMGR:0x0000000000000001> , #<UnifiApi::S::CMD::STAMGR:0x0000000000000002>]
 
-site = unifi.site_find_by_id('site1_id')
+site = unifi.site_find_by_id(site_id)
 # => <UnifiApi::S::CMD::STAMGR:0x0000000000000000>
 
 site.name
