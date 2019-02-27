@@ -10,7 +10,10 @@ module UnifiApi
       @password = password
       @url = url
       @logged_in = login
-      @sites = set_sites if logged_in?
+
+      raise ArgumentError unless logged_in?
+
+      @sites = set_sites
     end
     
     def login
