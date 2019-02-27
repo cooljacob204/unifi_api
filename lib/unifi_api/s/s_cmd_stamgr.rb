@@ -4,12 +4,9 @@ module UnifiApi
   module S
     module CMD
       class STAMGR
-        include Helpers
-        
         attr_reader :id, :name
 
-        def initialize(url:, id: nil, session:, **args)
-          @url = url
+        def initialize(id:, session:, **args)
           @id = id
           @session = session
           @name = args[:name]
@@ -17,7 +14,7 @@ module UnifiApi
 
         def authorize_guest(mac, minutes=60, up=nil, down=nil, mbytes=nil, ap_mac=nil)
           return false unless id
-          return false unless mac_valid?(mac)
+          return false unless Helpers.mac_valid?(mac)
 
           body = {
             'cmd' => 'authorize-guest',
@@ -37,7 +34,7 @@ module UnifiApi
 
         def unauthorize_guest(mac)
           return false unless id
-          return false unless mac_valid?(mac)
+          return false unless Helpers.mac_valid?(mac)
 
           body = {
             'cmd' => 'unauthorize-guest',
@@ -52,7 +49,7 @@ module UnifiApi
 
         def reconnect_sta(mac)
           return false if !id
-          return false unless mac_valid?(mac)
+          return false unless Helpers.mac_valid?(mac)
 
           body = {
             'cmd' => 'kick-sta',
@@ -65,9 +62,9 @@ module UnifiApi
           true
         end
 
-        def block_sta
+        def block_sta(mac)
           return false unless id
-          return false unless mac_valid?(mac)
+          return false unless Helpers.mac_valid?(mac)
 
           body = {
             'cmd' => 'block-sta',
@@ -79,9 +76,9 @@ module UnifiApi
           true
         end
 
-        def unblock_sta
+        def unblock_sta(mac)
           return false unless id
-          return false unless mac_valid?(mac)
+          return false unless Helpers.mac_valid?(mac)
 
           body = {
             'cmd' => 'unblock-sta',
@@ -93,9 +90,9 @@ module UnifiApi
           true
         end
 
-        def forget_sta
+        def forget_sta(mac)
           return false unless id
-          return false unless mac_valid?(mac)
+          return false unless Helpers.mac_valid?(mac)
 
           body = {
             'cmd' => 'forget-sta',
@@ -110,9 +107,8 @@ module UnifiApi
         private
 
         def post_request(body)
-          @session.post("#{@url}/api/s/#{@id}/cmd/stamgr", body)
+          @session.post("api/s/#{@id}/cmd/stamgr", body)
         end
-
       end
     end
   end

@@ -7,3 +7,4 @@
 /spec/reports/
 /tmp/
 /bin/test_with_credentials
+.env
