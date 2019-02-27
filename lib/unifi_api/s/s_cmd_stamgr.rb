@@ -4,8 +4,6 @@ module UnifiApi
   module S
     module CMD
       class STAMGR
-        include Helpers
-
         attr_reader :id, :name
 
         def initialize(id:, session:, **args)
@@ -16,7 +14,7 @@ module UnifiApi
 
         def authorize_guest(mac, minutes=60, up=nil, down=nil, mbytes=nil, ap_mac=nil)
           return false unless id
-          return false unless mac_valid?(mac)
+          return false unless Helpers.mac_valid?(mac)
 
           body = {
             'cmd' => 'authorize-guest',
@@ -36,7 +34,7 @@ module UnifiApi
 
         def unauthorize_guest(mac)
           return false unless id
-          return false unless mac_valid?(mac)
+          return false unless Helpers.mac_valid?(mac)
 
           body = {
             'cmd' => 'unauthorize-guest',
@@ -51,7 +49,7 @@ module UnifiApi
 
         def reconnect_sta(mac)
           return false if !id
-          return false unless mac_valid?(mac)
+          return false unless Helpers.mac_valid?(mac)
 
           body = {
             'cmd' => 'kick-sta',
@@ -66,7 +64,7 @@ module UnifiApi
 
         def block_sta(mac)
           return false unless id
-          return false unless mac_valid?(mac)
+          return false unless Helpers.mac_valid?(mac)
 
           body = {
             'cmd' => 'block-sta',
@@ -80,7 +78,7 @@ module UnifiApi
 
         def unblock_sta(mac)
           return false unless id
-          return false unless mac_valid?(mac)
+          return false unless Helpers.mac_valid?(mac)
 
           body = {
             'cmd' => 'unblock-sta',
@@ -94,7 +92,7 @@ module UnifiApi
 
         def forget_sta(mac)
           return false unless id
-          return false unless mac_valid?(mac)
+          return false unless Helpers.mac_valid?(mac)
 
           body = {
             'cmd' => 'forget-sta',
