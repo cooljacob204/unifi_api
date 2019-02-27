@@ -1,7 +1,7 @@
 module UnifiApi
   class Self
     class << self
-      def self_sites(session)
+      def sites(session)
         resp = session.get("api/self/sites")
 
         return false unless resp.status_code == 200

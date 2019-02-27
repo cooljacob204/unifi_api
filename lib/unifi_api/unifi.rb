@@ -45,7 +45,7 @@ module UnifiApi
     end
 
     def site_names_and_ids
-      return false unless sites = Stats.stat_sites(@session)
+      return false unless sites = Stats.sites(@session)
       sites_parsed = {}
 
       sites.body["data"].each do |site|
