@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe UnifiApi::Unifi do
   before(:all) do
-    @unifi = UnifiApi::Unifi.new(username: ENV['TEST_USERNAME'], password: ENV['TEST_PASSWORD'], url: ENV['TEST_URL'])    
+    @unifi = UnifiApi::Unifi.new(username: ENV['TEST_USERNAME'], password: ENV['TEST_PASSWORD'], url: ENV['TEST_URL'])  
   end
 
   describe 'initialize' do
@@ -45,5 +45,11 @@ describe UnifiApi::Unifi do
   
   it 'can find a site by name' do
      expect(@unifi.site_find_by_name(@unifi.site_names[0])).to equal @unifi.sites[0]
+  end
+
+  it 'can logout' do
+    @unifi.logout
+    expect(@unifi.logged_in?).to equal false
+    @unifi.login
   end
 end
