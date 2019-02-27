@@ -5,43 +5,26 @@ module UnifiApi
     attr_reader :username, :url, :sites
     
     def initialize(username:, password:, url:, **args)
-      @session = JSONClient.new(default_header: {"User-Agent" => "unifi_api"})
-      @username = username
-      @password = password
-      @url = url
-      @logged_in = login
+      @session = args[:session]
+      @session ||= Session.new(username: username, password: password, url: url)
 
+      login
+      
       raise ArgumentError unless logged_in?
 
       @sites = set_sites
     end
     
     def login
-      return true if logged_in?
-      
-      login_data = {
-        'username' => @username,
-        'password' => @password
-      }
-      
-      resp = @session.post("#{@url}/api/login", login_data)
-      
-      return false unless resp.status_code == 200
-      @sites ||= set_sites
-      true
+      @session.login
     end
 
     def logout
-      resp = @session.post("#{@url}/api/logout", {})
-
-      return false unless resp.status_code == 200
-
-      @logged_in = false
-      true
+      @session.logout
     end
 
     def logged_in?
-      @logged_in
+      @session.logged_in?
     end
 
     def site_find_by_id(site_id)
@@ -62,7 +45,7 @@ module UnifiApi
     end
 
     def site_names_and_ids
-      return false unless sites = Stats.stat_sites(@session, @url)
+      return false unless sites = Stats.stat_sites(@session)
       sites_parsed = {}
 
       sites.body["data"].each do |site|
@@ -76,7 +59,7 @@ module UnifiApi
 
     def set_sites
       site_names_and_ids.map do |key, value|
-        S::CMD::STAMGR.new(url: @url, id: value, name: key, session: @session)
+        S::CMD::STAMGR.new(id: value, name: key, session: @session)
       end
     end
   end
