@@ -1,6 +1,6 @@
 # UnifiApi
 
-A gem for interacting with a Unifi controller.
+A gem for interacting with a [Unifi controller](https://www.ui.com/software/).
 
 ## Installation
 
