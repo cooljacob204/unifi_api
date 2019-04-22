@@ -1,3 +1,3 @@
 module UnifiApi
-  VERSION = "0.2.15"
+  VERSION = "0.2.20"
 end
