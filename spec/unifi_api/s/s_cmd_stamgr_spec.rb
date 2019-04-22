@@ -1,10 +1,10 @@
 require 'spec_helper'
 
-describe UnifiApi::S::CMD::STAMGR do
+describe UnifiApi::Site do
   before(:all) do
     session = UnifiApi::Session.new(username: ENV['TEST_USERNAME'], password: ENV['TEST_PASSWORD'], url: ENV['TEST_URL'])
     session.login
-    @stamgr = UnifiApi::S::CMD::STAMGR.new(id: 'default', session: session, name: 'Default')
+    @stamgr = UnifiApi::Site.new(id: 'default', session: session, name: 'Default')
   end
 
   it 'authorizes guests' do
