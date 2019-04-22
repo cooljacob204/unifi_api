@@ -45,7 +45,7 @@ module UnifiApi
     end
 
     def site_names_and_ids
-      return false unless sites = Stats.sites(@session)
+      return false unless sites = Stat.sites(@session)
       sites_parsed = {}
 
       sites.body["data"].each do |site|
@@ -59,7 +59,7 @@ module UnifiApi
 
     def set_sites
       site_names_and_ids.map do |key, value|
-        S::CMD::STAMGR.new(id: value, name: key, session: @session)
+        Site.new(id: value, name: key, session: @session)
       end
     end
   end

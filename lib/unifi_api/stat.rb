@@ -1,5 +1,5 @@
 module UnifiApi
-  class Stats
+  class Stat
     class << self
       def sites(session)
         resp = session.get("api/stat/sites")

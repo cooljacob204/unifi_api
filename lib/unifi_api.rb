@@ -6,9 +6,11 @@ require 'unifi_api/version'
 require 'unifi_api/rest'
 require 'unifi_api/stat'
 require 'unifi_api/self'
-require 'unifi_api/s/s_cmd_stamgr'
 require 'unifi_api/session'
+require 'unifi_api/s/s_cmd_stamgr'
+require 'unifi_api/s/stat'
 
+require 'unifi_api/site'
 require 'unifi_api/unifi'
 
 module UnifiApi

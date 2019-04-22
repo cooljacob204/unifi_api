@@ -3,15 +3,7 @@
 module UnifiApi
   module S
     module CMD
-      class STAMGR
-        attr_reader :id, :name
-
-        def initialize(id:, session:, **args)
-          @id = id
-          @session = session
-          @name = args[:name]
-        end
-
+      module STAMGR
         def authorize_guest(mac, minutes=60, up=nil, down=nil, mbytes=nil, ap_mac=nil)
           return false unless id
           return false unless Helpers.mac_valid?(mac)
