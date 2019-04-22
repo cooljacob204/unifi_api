@@ -5,15 +5,15 @@ module UnifiApi
       def user(mac)
         raise ArgumentError unless Helpers.mac_valid?(mac)
 
-        post_request("user/#{mac}", {})
+        stat_post_request("user/#{mac}", {})
       end
 
       def list_users
-        post_request("sta/", {})
+        stat_post_request("sta/", {})
       end
 
       private
-      def post_request(url, body)
+      def stat_post_request(url, body)
         @session.post("api/s/#{@id}/stat/#{url}", body)
       end
 
